@@ -12,11 +12,12 @@
   tasks:
     - name: add student controllers to hosts list 
       add_host:
-        name:
-          - 3.133.108.216
-          - 3.133.136.252
+        name: "{{ item }}"
  #       name: student{{item}}.{{workshop_id}}.example.opentlc.com
         group: controllers
+      loop:
+        - 3.133.108.216
+        - 3.133.136.252
   #    loop: "{{ number_of_workshop_students }}"        
 
 - name: add supplemental controller objects to workshop 
