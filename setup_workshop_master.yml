@@ -6,7 +6,9 @@
     - workshop/secrets.yml
   vars:
     controller_validate_certs: false
-    number_of_workshop_students: 2
+    number_of_workshop_students: 
+      - 1
+      - 2
     workshop_ID: rhceed
 
   tasks:
