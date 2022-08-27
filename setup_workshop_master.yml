@@ -22,6 +22,7 @@
 
 - name: add supplemental controller objects to workshop 
   hosts: controllers
+  become: true
   gather_facts: no
   vars_files:
     - workshop/setup.yml
