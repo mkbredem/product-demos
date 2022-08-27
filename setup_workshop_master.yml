@@ -2,35 +2,37 @@
 - name: add all workshop controllers
   hosts: localhost
   gather_facts: no
-  vars:
-    controller_validate_certs: false
-    number_of_workshop_students: 
-      - 1
-      - 2
-    workshop_id: rhceed
-
-  tasks:
-    - name: add student controllers to hosts list 
-      add_host:
-        name: "{{ item }}"
- #       name: student{{item}}.{{workshop_id}}.example.opentlc.com
-        group: controllers
-      loop:
-        - 3.133.108.216
-        - 3.133.136.252
-  #    loop: "{{ number_of_workshop_students }}"        
-
-- name: add supplemental controller objects to workshop 
-  hosts: controllers
-  become: true
-  gather_facts: no
   vars_files:
     - workshop/setup.yml
     - workshop/secrets.yml
   vars:
     controller_validate_certs: false
+    number_of_workshop_students: 
+      - 2
+    workshop_id: rhceed
 
   tasks:
+#     - name: add student controllers to hosts list 
+#       add_host:
+#         name: "{{ item }}"
+#  #       name: student{{item}}.{{workshop_id}}.example.opentlc.com
+#         group: controllers
+#       loop:
+#         - 3.133.108.216
+#         - 3.133.136.252
+  #    loop: "{{ number_of_workshop_students }}"        
+
+# - name: add supplemental controller objects to workshop 
+#   hosts: controllers
+#   become: true
+#   gather_facts: no
+#   vars_files:
+#     - workshop/setup.yml
+#     - workshop/secrets.yml
+#   vars:
+#     controller_validate_certs: false
+
+#   tasks:
     - name: set up controller objects for single host
       include_role:
         name: "redhat_cop.controller_configuration.{{ item }}"
