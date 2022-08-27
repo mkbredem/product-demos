@@ -9,7 +9,7 @@
     number_of_workshop_students: 
       - 1
       - 2
-    workshop_ID: rhceed
+    workshop_id: rhceed
 
   tasks:
     - name: add student controllers to hosts list 
