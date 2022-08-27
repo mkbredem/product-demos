@@ -1,9 +1,7 @@
 ---
-- hosts: localhost
+- name: add all workshop controllers
+  hosts: localhost
   gather_facts: no
-  vars_files:
-    - workshop/setup.yml
-    - workshop/secrets.yml
   vars:
     controller_validate_certs: false
     number_of_workshop_students: 
@@ -18,8 +16,17 @@
         group: controllers
       loop: "{{ number_of_workshop_students }}"        
 
+- name: add supplemental controller objects to workshop 
+  hosts: controllers
+  gather_facts: no
+  vars_files:
+    - workshop/setup.yml
+    - workshop/secrets.yml
+  vars:
+    controller_validate_certs: false
+
+  tasks:
     - name: set up controller objects for single host
-      hosts: controllers
       include_role:
         name: "redhat_cop.controller_configuration.{{ item }}"
       loop: "{{ controller_components }}"
