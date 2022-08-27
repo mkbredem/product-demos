@@ -15,9 +15,11 @@
     - name: add student controllers to hosts list 
       add_host:
         name: student{{item}}.{{workshop_id}}.example.opentlc.com
+        group: controllers
       loop: "{{ number_of_workshop_students }}"        
 
     - name: set up controller objects for single host
+      hosts: controllers
       include_role:
         name: "redhat_cop.controller_configuration.{{ item }}"
       loop: "{{ controller_components }}"
