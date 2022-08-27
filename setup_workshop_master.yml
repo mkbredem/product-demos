@@ -10,10 +10,17 @@
     workshop_ID: rhceed
 
   tasks:
+    - name: add student controllers to hosts list 
+      add_host:
+        name: student{{item}}.{{workshop_id}}.example.opentlc.com
+      loop: "{{ number_of_workshop_students }}"        
+
     - name: set up controller objects for single host
-      include_tasks: setup_workshop_child.yml    
-      delegate_to: "student{{ item }}.{{workshop_ID}}.example.opentlc.com"
-      loop: "{{ number_of_workshop_students }}"
+      include_role:
+        name: "redhat_cop.controller_configuration.{{ item }}"
+      loop: "{{ controller_components }}"
+      when:
+        - controller_components | d("") | length > 0
   
     
 
