@@ -2,17 +2,17 @@
 user_message:
   - place holder for workhshop build message
 controller_components:
-#  - projects
+  - projects
 #  - credential_types
   - credentials
 #  - inventory_sources
 #  - job_templates
 
-#controller_projects:
-#  - name: Fact Scan
-#    organization: Default
-#    scm_type: git
-#    scm_url: 'https://github.com/ansible/awx-facts-playbooks.git'
+controller_projects:
+  - name: Fact Scan
+    organization: Default
+    scm_type: git
+    scm_url: 'https://github.com/ansible/awx-facts-playbooks.git'
 
 #controller_credential_types:
 #  - name: "Insights Collection"
@@ -39,6 +39,7 @@ controller_credentials:
       galaxy_server_url: "{{ automation_hub_server }}"
       auth_server_url: "{{ automation_hub_auth_url }}"
       automation_hub_token: "{{automation_hub_token }}"
+    ignore_errors: true
 
 
 #  - name: Insights Inventory
