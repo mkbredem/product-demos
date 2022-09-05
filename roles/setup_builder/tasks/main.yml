@@ -11,4 +11,4 @@
 - name: remove execution_environments directory
   copy:
     src: execution_environments
-    dest: /home/ec2_user
+    dest: /home/student
