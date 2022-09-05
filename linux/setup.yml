@@ -61,6 +61,7 @@ controller_templates:
     project: "Workshop Mod"
     playbook: "linux/setup_builder.yml"
     execution_environment: Default execution environment
+    privilege _escalation: true
     credentials:
     - "Workshop Credential"
     survey_enabled: true
