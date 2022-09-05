@@ -1,0 +1,9 @@
+---
+- name: Install ansible builder
+  hosts: "{{ HOSTS }}"
+  vars:
+    volume_path: podman
+    message: undef
+
+  roles:
+    - setup_builder

@@ -1,0 +1,14 @@
+---
+# tasks file for setup_builder
+- name: install builder
+  yum:
+    name: 
+      - ansible-builder
+      - git
+      - tree
+    state: present
+
+- name: remove execution_environments directory
+  copy:
+    src: execution_environments
+    dest: /home/ec2_user
