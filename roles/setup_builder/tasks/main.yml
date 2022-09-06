@@ -17,5 +17,5 @@
   copy:
     src: execution_environments
     dest: /home/student
-    owner: student
     group: student
+    owner: student
