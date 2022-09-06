@@ -8,7 +8,12 @@
       - tree
     state: present
 
-- name: remove execution_environments directory
+- name: remove execution_environments if it exists
+  file:
+    path: /home/student/execution_environments
+    state: absent
+
+- name: enusre uptodate execution_environments directory exists
   copy:
     src: execution_environments
     dest: /home/student
