@@ -14,6 +14,7 @@ collections:
   #windows
   - chocolatey.chocolatey
   - community.windows
+  - community.general.redhat_subscription
   - name: ansible.windows
     version: 1.9.0
   #cloud
