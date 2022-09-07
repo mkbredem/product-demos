@@ -17,7 +17,7 @@
         credential_type: "Red Hat Ansible Automation Platform"
         organization: default
         inputs: 
-          red_hat_ansible_automation_platform: student{{student_number}}.{{workshop_id}}.example.opentlc.com
+          host: student{{student_number}}.{{workshop_id}}.example.opentlc.com
           username: admin
           password: "{{workshop_password}}"
         ignore_errors: true
