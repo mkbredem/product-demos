@@ -1,15 +1,16 @@
 ---
-- name: add all workshop controllers
+- name: create controller credentials for each student
   hosts: localhost
   gather_facts: no
   vars_files:
-    - workshop/setup.yml
+    - workshop/setup_controller_creds.yml
     - workshop/secrets.yml
   vars:
     controller_validate_certs: false
     number_of_workshop_students: 
       - 2
     workshop_id: rhceed
+    workshop_password: ""
 
   tasks:
 #     - name: add student controllers to hosts list 
