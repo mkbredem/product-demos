@@ -10,11 +10,30 @@
     number_of_workshop_students: 2
     workshop_id: rh0fe3
     workshop_password: ""
+    controller_components:
+      - credentials
+    controller_credentials:
+      - name: student{{student_number}}_controller_cred
+        credential_type: "Red Hat Ansible Automation Platform"
+        organization: default
+        inputs: 
+          red_hat_ansible_automation_platform: student{{student_number}}.{{workshop_id}}.example.opentlc.com
+          username: admin
+          password: "{{workshop_password}}"
+        ignore_errors: true
 
-  tasks:   
-    - name: set up controller creds
-      include_role:
-        name: "setup_workshop_student_controller_creds"
+  tasks:
+    - name: create all student controller creds
+      include_tasks: build_student_controller_creds.yml
+      loop: "{{ query('sequence', 'start=1 end='+(number_of_workshop_students)|string) }}"
+      loop_control:
+        loop_var: student_number
+        label: "{{ student_number }}"
+
+
+    # - name: set up controller creds
+    #   include_role:
+    #     name: "setup_workshop_student_controller_creds"
       # loop: "{{ controller_components }}"
       # when:
       #   - controller_components | d("") | length > 0
