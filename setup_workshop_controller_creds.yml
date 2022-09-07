@@ -11,7 +11,8 @@
     workshop_id: rh0fe3
     workshop_password: ""
     controller_components:
-      - credentials
+#      - credentials
+      - projects
     controller_credentials:
       - name: student{{student_number}}_controller_cred
         credential_type: "Red Hat Ansible Automation Platform"
@@ -21,6 +22,11 @@
           username: admin
           password: "{{workshop_password}}"
         ignore_errors: true
+    controller_projects:
+      - name: Fact Scan
+        organization: Default
+        scm_type: git
+        scm_url: 'https://github.com/ansible/awx-facts-playbooks.git'
 
   tasks:
     - name: create all student controller creds

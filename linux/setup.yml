@@ -15,10 +15,6 @@ controller_projects:
     organization: Default
     scm_type: git
     scm_url: 'https://github.com/ansible/awx-facts-playbooks.git'
-  - name: Fact Scan
-    organization: Default
-    scm_type: git
-    scm_url: 'https://github.com/ansible/awx-facts-playbooks.git'
 
 controller_credential_types:
   - name: "Insights Collection"
