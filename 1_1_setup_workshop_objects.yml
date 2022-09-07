@@ -9,6 +9,7 @@
     workshop_password: "GpplzFRwp5BpUV"
     controller_components:
       - credentials
+      - job_templates
 #      - projects
     controller_credentials:
       - name: "student{{student_number}}_controller_cred"
@@ -19,11 +20,21 @@
           username: admin
           password: "{{workshop_password}}"
         ignore_errors: true
-    controller_projects:
+    #controller_projects:
       # - name: Fact Scan{{student_number}}
       #   organization: Default
       #   scm_type: git
       #   scm_url: 'https://github.com/ansible/awx-facts-playbooks.git'
+    controller_templates:
+      - name: "WORKSHOP / Setup Student{{student_number}}"
+        job_type: run
+        inventory: "Workshop Inventory"
+        project: "Workshop Mod"
+        playbook: "4_1_build_student_ac_objects.yml"
+        execution_environment: Default execution environment
+        become_enabled: true
+        credentials:
+        - "student{{student_number}}_controller_cred"
 
   tasks:
     - name: create all student controller creds
@@ -33,6 +44,12 @@
         loop_var: student_number
         label: "{{ student_number }}"
 
+    # - name: create all student controller creds
+    #   include_tasks: 1_3_build_student_job_templates.yml
+    #   loop: "{{ query('sequence', 'start=1 end='+(number_of_workshop_students)|string) }}"
+    #   loop_control:
+    #     loop_var: student_number
+    #     label: "{{ student_number }}"
 
     # - name: set up controller creds
     #   include_role:
