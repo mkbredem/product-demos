@@ -2,55 +2,19 @@
 - name: create controller credentials for each student
   hosts: localhost
   gather_facts: no
-  vars_files:
-    - workshop/setup_controller_creds.yml
-    - workshop/secrets.yml
+  # vars_files:
+  #   - "{{demo}}/setup_controller_creds.yml"
+  #   - "{{demo}}/secrets.yml"
   vars:
     controller_validate_certs: false
-    number_of_workshop_students: 
-      - 2
-    workshop_id: rhceed
+    number_of_workshop_students: 2
+    workshop_id: rh0fe3
     workshop_password: ""
 
-  tasks:
-#     - name: add student controllers to hosts list 
-#       add_host:
-#         name: "{{ item }}"
-#  #       name: student{{item}}.{{workshop_id}}.example.opentlc.com
-#         group: controllers
-#       loop:
-#         - 3.133.108.216
-#         - 3.133.136.252
-  #    loop: "{{ number_of_workshop_students }}"        
-
-# - name: add supplemental controller objects to workshop 
-#   hosts: controllers
-#   become: true
-#   gather_facts: no
-#   vars_files:
-#     - workshop/setup.yml
-#     - workshop/secrets.yml
-#   vars:
-#     controller_validate_certs: false
-
-#   tasks:
-    - name: set up controller objects for single host
+  tasks:   
+    - name: set up controller creds
       include_role:
-        name: "redhat_cop.controller_configuration.{{ item }}"
-      loop: "{{ controller_components }}"
-      when:
-        - controller_components | d("") | length > 0
-  
-    
-
-    # - name: Log Demo
-    #   ansible.builtin.uri:
-    #     url: https://docs.google.com/forms/d/e/1FAIpQLSdIZ77YpETjEfGOoYlXtMnQiU-6M7QFlb2hJA4ujo25QYb2jw/formResponse
-    #     method: POST
-    #     body: "ifq&entry.1569353616={{ demo }} &entry.498055740={{ lookup('ansible.builtin.env', 'AWX_HOST') }}&sumbit=Submit"
-    #   ignore_errors: true
-
-    # - name: Print Message
-    #   debug:
-    #     msg: "{{ user_message }}"
-    #   when: user_message is defined
+        name: "setup_workshop_student_controller_creds"
+      # loop: "{{ controller_components }}"
+      # when:
+      #   - controller_components | d("") | length > 0
