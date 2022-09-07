@@ -2,31 +2,28 @@
 - name: create controller credentials for each student
   hosts: localhost
   gather_facts: no
-  # vars_files:
-  #   - "{{demo}}/setup_controller_creds.yml"
-  #   - "{{demo}}/secrets.yml"
   vars:
     controller_validate_certs: false
     number_of_workshop_students: 2
     workshop_id: rh0fe3
-    workshop_password: ""
+    workshop_password: "GpplzFRwp5BpUV"
     controller_components:
-#      - credentials
-      - projects
+      - credentials
+#      - projects
     controller_credentials:
-      - name: student{{student_number}}_controller_cred
+      - name: "student{{student_number}}_controller_cred"
         credential_type: "Red Hat Ansible Automation Platform"
-        organization: default
+        organization: Default
         inputs: 
           host: student{{student_number}}.{{workshop_id}}.example.opentlc.com
           username: admin
           password: "{{workshop_password}}"
         ignore_errors: true
     controller_projects:
-      - name: Fact Scan{{student_number}}
-        organization: Default
-        scm_type: git
-        scm_url: 'https://github.com/ansible/awx-facts-playbooks.git'
+      # - name: Fact Scan{{student_number}}
+      #   organization: Default
+      #   scm_type: git
+      #   scm_url: 'https://github.com/ansible/awx-facts-playbooks.git'
 
   tasks:
     - name: create all student controller creds
