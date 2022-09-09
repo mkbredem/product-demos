@@ -60,7 +60,6 @@ controller_templates:
     become_enabled: true
     credentials:
     - "Workshop Credential"
-    - "Ansible Vault"
     survey_enabled: true
     # extra_vars:
     #   activation_key: undef
@@ -156,8 +155,7 @@ controller_templates:
     project: "Ansible official demo project"
     playbook: "linux/patching.yml"
     execution_environment: Default execution environment
-    use_fact_cache: true
-    job_type: check
+    use_fact_cache: True
     ask_job_type_on_launch: yes
     credentials:
     - "Workshop Credential"
